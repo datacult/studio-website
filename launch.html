@@ -5,47 +5,51 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
         <!-- Google fonts -->
-		<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap" rel="stylesheet">
-        <!-- <link href="./css/styles.css" rel="stylesheet"> -->
         <style>
-            #start, #round, #scatter, #color {
+            body {
+                background-color: #F1ECEB;
+            }
+
+            #contract, #expand, #confetti {
                 height: 75vh;
             }
 
-            .bars, .outline {
-                transition: all 1s ease-in-out;
-            }
+            /* .forcebubbles {
+                transition: 1s;
+            } */
 
-            #bars-placeholder {
+            #launch {
                 position: sticky;
                 top:0;
-                background-color: #FAEDF1;
+                width:100%;
             }
 
+            #confetti-canvas {
+                position: sticky;
+                top:0;
+            }
         </style>
     </head>
     <body>  
-        <div id="bars-placeholder"></div>
-        <div id="start"></div>
-        <div id="round"></div>
-        <div id="scatter"></div>
-        <div id="color"></div>
+        <canvas id="confetti-canvas"></canvas>
+        <div id="launch"></div>
+        <div id="contract"></div>
+        <div id="expand"></div>
+        <div id="confetti"></div>
     </body>
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="bars.js"></script>
+    <script src="node_modules/confetti-js/dist/index.min.js"></script>
+    <script src="launch.js"></script>
     <script>
         async function init(){
             
-            let data = await d3.csv('bars.csv', d3.autoType)
-
-            let mapping = {x:'category', y:'value'}
-
-            let bar_vis = bars(data, mapping)
+            let launch_vis = launch()
         }
         init()
 

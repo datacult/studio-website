@@ -1,0 +1,22 @@
+{
+  "name": "studio-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bars.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datacult/studio-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datacult/studio-website/issues"
+  },
+  "homepage": "https://github.com/datacult/studio-website#readme",
+  "dependencies": {
+    "confetti-js": "^0.0.18"
+  }
+}

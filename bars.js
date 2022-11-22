@@ -141,28 +141,29 @@ svg
 svg.append("defs")
 .append("marker")
 .attr("id", "y-arrow")
-.attr("markerWidth", 15)
-.attr("markerHeight", 15)
-.attr("refX", 4.45)
-.attr("refY", 2)
+.attr("markerWidth", 51)
+.attr("markerHeight", 26)
+.attr("refX", 25.4)
+.attr("refY", 1)
 .attr("orient", 0)
 .attr("markerUnits", "strokeWidth")
 .append("path")
-.attr("d", "M4.76566 1.12179C4.5704 0.926526 4.25382 0.926526 4.05856 1.12179L0.876576 4.30377C0.681313 4.49903 0.681313 4.81561 0.876576 5.01088C1.07184 5.20614 1.38842 5.20614 1.58368 5.01088L4.41211 2.18245L7.24054 5.01088C7.4358 5.20614 7.75238 5.20614 7.94764 5.01088C8.14291 4.81561 8.14291 4.49903 7.94764 4.30377L4.76566 1.12179ZM4.91211 1.97534L4.91211 1.47534L3.91211 1.47534L3.91211 1.97534L4.91211 1.97534Z")
+.attr("d", 'M0.714844 25.4369L25.3881 0.763672L50.0613 25.4369')
+.attr('fill','none').attr('stroke','#504E4E')
 
 //add arrow to x-axis
 svg.append("defs")
 .append("marker")
 .attr("id", "x-arrow")
-.attr("markerWidth", 15)
-.attr("markerHeight", 15)
-.attr("refX", 4.45)
-.attr("refY", 2)
+.attr("markerWidth", 51)
+.attr("markerHeight", 26)
+.attr("refX", 25.4)
+.attr("refY", 1)
 .attr("orient", 90)
 .attr("markerUnits", "strokeWidth")
 .append("path")
-.attr("d", "M4.76566 1.12179C4.5704 0.926526 4.25382 0.926526 4.05856 1.12179L0.876576 4.30377C0.681313 4.49903 0.681313 4.81561 0.876576 5.01088C1.07184 5.20614 1.38842 5.20614 1.58368 5.01088L4.41211 2.18245L7.24054 5.01088C7.4358 5.20614 7.75238 5.20614 7.94764 5.01088C8.14291 4.81561 8.14291 4.49903 7.94764 4.30377L4.76566 1.12179ZM4.91211 1.97534L4.91211 1.47534L3.91211 1.47534L3.91211 1.97534L4.91211 1.97534Z")
-
+.attr("d", 'M0.714844 25.4369L25.3881 0.763672L50.0613 25.4369')
+.attr('fill','none').attr('stroke','#504E4E')
 
 //draw split y-axis w/ label
 
@@ -182,7 +183,7 @@ svg
     .attr('y1',height+25)
     .attr('y2',height+25)
     .attr('x1',-20)
-    .attr('x2',width+20)
+    .attr('x2',width+40)
     .attr('stroke','#504E4E')
     .attr('marker-end',"url(#x-arrow)");
 
@@ -216,10 +217,11 @@ var bar_outline = svg.selectAll(".outline")
     .style('opacity',0);
 
 
+svg.append('image').attr('href','assets/Annotation.svg').attr('x',width*.695).attr('y',yScale(82)).attr('transform','scale(.75)')
+
+
     //scroll update function
     function update(val){
-
-        // if (val) step = val.target.value;
 
         if (stp == 1) {
 
@@ -241,26 +243,16 @@ var bar_outline = svg.selectAll(".outline")
 
             bar_outline.style('opacity',0)
 
-            bar_rect.attr('height',rect_width-10).attr('fill','#947BB6')
-            // update_shape(data[2],'#52E0BE')
-
-            // study1.style('opacity',0)
-            // hover_rect.attr('display',"none")
-            // study2.style('opacity',0)
-            // study3.style('opacity',1)
-            // study4.style('opacity',0)
+            bar_rect.attr('rx',20).attr('width',rect_width-10)
+            .attr("x", function(d) {return xScale(d[data_map.x])+5;}).attr('height',rect_width-10).attr('fill','#947BB6')
 
         } else {
 
             bar_outline.style('opacity',0)
-            bar_rect.attr('height',rect_width-10).attr('fill',function(d) {return colorScale(d[data_map.x])})
-            // update_shape(data[3],'#52E0BE')
+            bar_rect.attr('rx',20).attr('width',rect_width-10)
+            .attr("x", function(d) {return xScale(d[data_map.x])+5;}).attr('height',rect_width-10)
+            .attr('fill',function(d) {return colorScale(d[data_map.x])})
 
-            // study1.style('opacity',0)
-            // hover_rect.attr('display',"none")
-            // study2.style('opacity',0)
-            // study3.style('opacity',0)
-            // study4.style('opacity',1)
         }
 
         
