@@ -18,10 +18,10 @@ let launch = ((selector = '#launch') => {
         top: 10,
         bottom: 10
     } : {
-        left: 100,
-        right: 100,
-        top: 100,
-        bottom: 100
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10
     }
 
     // responsive width & height
