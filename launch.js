@@ -185,7 +185,7 @@ let launch = ((selector = '#launch') => {
         .selectAll(".forcebubbles")
         .data(nodes)
         .join("svg:image")
-        .attr("xlink:href", (d,i) => `/assets/launch/${i+1}.svg`)
+        .attr("xlink:href", (d,i) => `https://github.com/datacult/studio-website/tree/main/assets/launch${i+1}.svg`)
         .style("transform", d => "translate"+d.translate+" scale("+d.scl+")")
         .attr("class", "forcebubbles")
         .attr('id',d=>'bubble'+d.id)
