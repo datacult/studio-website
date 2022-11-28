@@ -77,7 +77,7 @@ let launch = ((selector = '#launch') => {
 
         expandObserver.observe(expand);
 
-        const confetti = document.querySelector('#confetti');
+        const confettiOb = document.querySelector('#confetti');
 
         const confettiObserver = new IntersectionObserver(handleConfetti, options);
     
@@ -88,7 +88,7 @@ let launch = ((selector = '#launch') => {
             }
         };
 
-        confettiObserver.observe(confetti);
+        confettiObserver.observe(confettiOb);
 
     ////////////////////////////////////
     //////////////globals///////////////
@@ -203,27 +203,32 @@ let launch = ((selector = '#launch') => {
             .attr("y", d => d.y)
     })
 
+    var confettiSettings = {
+        "target":"confetti-canvas",
+        "max":"200",
+        "size":"1",
+        "animate":true,
+        "props":["square","line"],
+        "colors":[[125,192,195],[214,77,102],[251,175,132],[148,123,182]],
+        "clock":"25",
+        "rotate":true,
+        "start_from_edge":false,
+        "respawn":true
+    };
+    var confetti = new ConfettiGenerator(confettiSettings);
+
     //scroll update function
     function update(val){
-        var confettiSettings = {
-            "target":"confetti-canvas",
-            "max":"200",
-            "size":"1",
-            "animate":true,
-            "props":["square","line"],
-            "colors":[[125,192,195],[214,77,102],[251,175,132],[148,123,182]],
-            "clock":"25",
-            "rotate":true,
-            "start_from_edge":false,
-            "respawn":true
-        };
-        var confetti = new ConfettiGenerator(confettiSettings);
+        
+
+        console.log(stp)
 
         if (stp == 1) {
             
-            confetti.clear();
+            // confetti.render();
 
             simulation
+            .alpha(1)
             .force("collide", d3.forceCollide(0).iterations(100)).restart()
 
             node
@@ -233,13 +238,8 @@ let launch = ((selector = '#launch') => {
             
             confetti.clear();
 
-            // simulation = d3.forceSimulation(nodes)
-            //     .force("link", d3.forceLink(links).id(d => d.id).distance(10))
-            //     .force("charge", d3.forceManyBody())
-            //     .force("collide", d3.forceCollide(125).iterations(100))
-            //     .force("center", d3.forceCenter(width / 2, height / 2))
-
             simulation
+            .alpha(1)
             .force("collide", d3.forceCollide(125).iterations(100)).restart()
 
             node
@@ -249,6 +249,7 @@ let launch = ((selector = '#launch') => {
         } else {
 
             console.log('confetti')
+            confetti = new ConfettiGenerator(confettiSettings);
             confetti.render();
 
         }

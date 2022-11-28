@@ -116,7 +116,7 @@ var yScale = d3.scaleLinear()
 
 var colorScale = d3.scaleOrdinal()
 .domain(data.map(function(d) { return d[data_map.x]; }))
-.range(["#FBAF84","#7DC0C3","#7DC0C3","#FBAF84","#7DC0C3","#FBAF84","#947BB6"])
+.range(["#FBAF84","#7DC0C3","#7DC0C3","#FBAF84","#947BB6","#FBAF84","#7DC0C3"])
 
 // Add x-axis
 svg.append("g")
@@ -227,7 +227,7 @@ svg.append('image').attr('href','assets/Annotation.svg').attr('x',width*.695).at
 
             bar_rect.attr('rx',0).attr('width',rect_width)
             .attr("x", function(d) {return xScale(d[data_map.x]);})
-            .attr('height',function(d) { return height - yScale(d[data_map.y]); })
+            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#947BB6')
 
             bar_outline.style('opacity',0)
 
@@ -235,7 +235,7 @@ svg.append('image').attr('href','assets/Annotation.svg').attr('x',width*.695).at
 
             bar_rect.attr('rx',20).attr('width',rect_width-10)
             .attr("x", function(d) {return xScale(d[data_map.x])+5;})
-            .attr('height',function(d) { return height - yScale(d[data_map.y]); })
+            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#947BB6')
 
             bar_outline.style('opacity',1)
 
