@@ -35,16 +35,20 @@ let launch = ((selector = '#launch') => {
     // add SVG
     d3.select(`${selector} svg`).remove();
 
+    d3.select('#confetti').append('canvas').attr('id','confetti-canvas');
+
     const svg = d3.select(selector)
         .append('svg')
         .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
         .append('g')
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
+    // d3.select(selector).append('canvas').attr('id','confetti-canvas');
     ////////////////////////////////////
     //////////scroll observers//////////
     ////////////////////////////////////
     let stp = 1;
+    // let remove = false;
     let options = {
         root: null,
         rootMargin: "0px",
@@ -71,6 +75,7 @@ let launch = ((selector = '#launch') => {
         function handleExpand(entry, observer) {
             if (entry[0].intersectionRatio > .75) {
                 stp = 2
+                // remove = false
                 update()
             }
         };
@@ -179,6 +184,7 @@ let launch = ((selector = '#launch') => {
         .join("line")
         .attr("stroke-width", d => Math.sqrt(d.value))
 
+
     const node = svg.append("g")
         .attr("stroke", "#fff")
         .attr("stroke-width", 1.5)
@@ -186,7 +192,8 @@ let launch = ((selector = '#launch') => {
         .data(nodes)
         .join("svg:image")
         .attr("xlink:href", (d,i) => `https://datacult.github.io/studio-website/assets/launch/${i+1}.svg`)
-        .style("transform", d => "translate"+d.translate+" scale("+d.scl+")")
+        .style("transform", d => "translate"+d.translate)
+        .style("opacity",d => d.scl)
         .attr("class", "forcebubbles")
         .attr('id',d=>'bubble'+d.id)
         .call(drag(simulation));
@@ -205,12 +212,24 @@ let launch = ((selector = '#launch') => {
 
     var confettiSettings = {
         "target":"confetti-canvas",
-        "max":"200",
-        "size":"1",
+        "max":"400",
+        "size":"1.5",
         "animate":true,
-        "props":["square","line"],
+        // "props":["square","line"],
+        "props": [
+            {"type":"svg","src":"assets/confetti/confetti-1.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-2.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-3.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-4.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-5.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-6.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-7.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-8.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-9.svg","size":15,"weight":0.2},
+            {"type":"svg","src":"assets/confetti/confetti-10.svg","size":15,"weight":0.2},
+        ],
         "colors":[[125,192,195],[214,77,102],[251,175,132],[148,123,182]],
-        "clock":"25",
+        "clock":"35",
         "rotate":true,
         "start_from_edge":false,
         "respawn":true
@@ -224,15 +243,14 @@ let launch = ((selector = '#launch') => {
         console.log(stp)
 
         if (stp == 1) {
-            
-            // confetti.render();
 
             simulation
             .alpha(1)
             .force("collide", d3.forceCollide(0).iterations(100)).restart()
 
             node
-            .style("transform", d => "translate"+d.translate+" scale("+d.scl+")")
+            .style("transform", d => "translate"+d.translate)
+            .style("opacity",d => d.scl)
             .call(drag(simulation))
         } else if (stp == 2){
             
@@ -243,7 +261,8 @@ let launch = ((selector = '#launch') => {
             .force("collide", d3.forceCollide(125).iterations(100)).restart()
 
             node
-            .style("transform", d => "translate"+d.translate+" scale(1)")
+            .style("transform", d => "translate"+d.translate)
+            .style("opacity",1)
             .call(drag(simulation))
 
         } else {
