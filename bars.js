@@ -217,7 +217,7 @@ var bar_outline = svg.selectAll(".outline")
     .style('opacity',0);
 
 
-svg.append('image').attr('href','assets/Annotation.svg').attr('x',width*.695).attr('y',yScale(82)).attr('transform','scale(.75)')
+svg.append('image').attr('href','https://datacult.github.io/studio-website/assets/Annotation.svg').attr('x',width*.695).attr('y',yScale(82)).attr('transform','scale(.75)')
 
 
     //scroll update function
