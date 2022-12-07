@@ -35,7 +35,7 @@ let launch = ((selector = '#launch') => {
     // add SVG
     d3.select(`${selector} svg`).remove();
 
-    d3.select('#confetti').append('canvas').attr('id','confetti-canvas');
+    d3.select('#confetti-placeholder').append('canvas').attr('id','confetti-canvas');
 
     const svg = d3.select(selector)
         .append('svg')
