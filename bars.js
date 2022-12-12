@@ -11,10 +11,10 @@ let bars = ((data, data_map = {x:'category', y:'value'}, selector = '#bars-place
 
      // margins for SVG
     var margin = {
-        left: 165,
-        right: 165,
-        top: 140,
-        bottom: 120
+        left: 195,
+        right: 195,
+        top: 160,
+        bottom: 160
     }
 
     // responsive width & height
@@ -108,7 +108,7 @@ let bars = ((data, data_map = {x:'category', y:'value'}, selector = '#bars-place
 var xScale = d3.scaleBand()
     .domain(data.map(function(d) { return d[data_map.x]; }))
     .rangeRound([0, width])
-    .padding(0.12);
+    .padding(0.08);
 
 var yScale = d3.scaleLinear()
     .domain([0, 100])
@@ -188,7 +188,7 @@ svg
     .attr('marker-end',"url(#x-arrow)");
 
 // Append rectangles
-var rect_width = xScale.bandwidth()-6
+var rect_width = xScale.bandwidth()-3
 
 var bar_rect = svg.selectAll(".bars")
     .data(data)
@@ -219,9 +219,8 @@ var bar_outline = svg.selectAll(".outline")
 
 svg.append('image')
     .attr('href','https://datacult.github.io/studio-website/assets/Annotation.svg')
-    .attr('x',width*1.08)
-    .attr('y',yScale(105))
-    .attr('transform','scale(.75)')
+    .attr('x',width*.76)
+    .attr('y',yScale(112))
 
 
     //scroll update function
