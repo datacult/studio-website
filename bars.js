@@ -11,10 +11,10 @@ let bars = ((data, data_map = {x:'category', y:'value'}, selector = '#bars-place
 
      // margins for SVG
     var margin = {
-        left: 145,
-        right: 145,
-        top: 120,
-        bottom: 110
+        left: 165,
+        right: 165,
+        top: 140,
+        bottom: 120
     }
 
     // responsive width & height
@@ -108,7 +108,7 @@ let bars = ((data, data_map = {x:'category', y:'value'}, selector = '#bars-place
 var xScale = d3.scaleBand()
     .domain(data.map(function(d) { return d[data_map.x]; }))
     .rangeRound([0, width])
-    .padding(0.1);
+    .padding(0.12);
 
 var yScale = d3.scaleLinear()
     .domain([0, 100])
@@ -116,7 +116,7 @@ var yScale = d3.scaleLinear()
 
 var colorScale = d3.scaleOrdinal()
 .domain(data.map(function(d) { return d[data_map.x]; }))
-.range(["#FBAF84","#7DC0C3","#7DC0C3","#FBAF84","#947BB6","#FBAF84","#7DC0C3"])
+.range(["#FC7A5D","#E6FF83","#E6FF83","#FC7A5D","#E6FF83","#FC7A5D","#3050FA"])
 
 // Add x-axis
 svg.append("g")
@@ -143,12 +143,12 @@ svg.append("defs")
 .attr("id", "y-arrow")
 .attr("markerWidth", 51)
 .attr("markerHeight", 26)
-.attr("refX", 25.4)
+.attr("refX", 19.1)
 .attr("refY", 1)
 .attr("orient", 0)
 .attr("markerUnits", "strokeWidth")
 .append("path")
-.attr("d", 'M0.714844 25.4369L25.3881 0.763672L50.0613 25.4369')
+.attr("d", 'M0.420898 19.4721L19.0766 0.816406L37.7324 19.4721')
 .attr('fill','none').attr('stroke','#504E4E')
 
 //add arrow to x-axis
@@ -157,12 +157,12 @@ svg.append("defs")
 .attr("id", "x-arrow")
 .attr("markerWidth", 51)
 .attr("markerHeight", 26)
-.attr("refX", 25.4)
+.attr("refX", 19.1)
 .attr("refY", 1)
 .attr("orient", 90)
 .attr("markerUnits", "strokeWidth")
 .append("path")
-.attr("d", 'M0.714844 25.4369L25.3881 0.763672L50.0613 25.4369')
+.attr("d", 'M0.420898 19.4721L19.0766 0.816406L37.7324 19.4721')
 .attr('fill','none').attr('stroke','#504E4E')
 
 //draw split y-axis w/ label
@@ -188,7 +188,7 @@ svg
     .attr('marker-end',"url(#x-arrow)");
 
 // Append rectangles
-var rect_width = xScale.bandwidth()-3
+var rect_width = xScale.bandwidth()-6
 
 var bar_rect = svg.selectAll(".bars")
     .data(data)
@@ -199,7 +199,7 @@ var bar_rect = svg.selectAll(".bars")
     .attr("width", rect_width)
     .attr("height", function(d) { return height - yScale(d[data_map.y]); })
     .attr("class", "bars")
-    .attr('fill','#947BB6');
+    .attr('fill','#3050FA');
 
 var bar_outline = svg.selectAll(".outline")
     .data(data)
@@ -217,7 +217,11 @@ var bar_outline = svg.selectAll(".outline")
     .style('opacity',0);
 
 
-svg.append('image').attr('href','https://datacult.github.io/studio-website/assets/Annotation.svg').attr('x',width*.695).attr('y',yScale(82)).attr('transform','scale(.75)')
+svg.append('image')
+    .attr('href','https://datacult.github.io/studio-website/assets/Annotation.svg')
+    .attr('x',width*1.04)
+    .attr('y',yScale(110))
+    .attr('transform','scale(.75)')
 
 
     //scroll update function
@@ -227,15 +231,15 @@ svg.append('image').attr('href','https://datacult.github.io/studio-website/asset
 
             bar_rect.attr('rx',0).attr('width',rect_width)
             .attr("x", function(d) {return xScale(d[data_map.x]);})
-            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#947BB6')
+            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#3050FA')
 
             bar_outline.style('opacity',0)
 
         } else if (stp == 2){
 
-            bar_rect.attr('rx',20).attr('width',rect_width-10)
+            bar_rect.attr('rx',15).attr('width',rect_width-10)
             .attr("x", function(d) {return xScale(d[data_map.x])+5;})
-            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#947BB6')
+            .attr('height',function(d) { return height - yScale(d[data_map.y]); }).attr('fill','#3050FA')
 
             bar_outline.style('opacity',1)
 
@@ -244,7 +248,7 @@ svg.append('image').attr('href','https://datacult.github.io/studio-website/asset
             bar_outline.style('opacity',0)
 
             bar_rect.attr('rx',20).attr('width',rect_width-10)
-            .attr("x", function(d) {return xScale(d[data_map.x])+5;}).attr('height',rect_width-10).attr('fill','#947BB6')
+            .attr("x", function(d) {return xScale(d[data_map.x])+5;}).attr('height',rect_width-10).attr('fill','#3050FA')
 
         } else {
 
