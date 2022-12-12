@@ -219,8 +219,8 @@ var bar_outline = svg.selectAll(".outline")
 
 svg.append('image')
     .attr('href','https://datacult.github.io/studio-website/assets/Annotation.svg')
-    .attr('x',width*1.04)
-    .attr('y',yScale(110))
+    .attr('x',width*1.08)
+    .attr('y',yScale(105))
     .attr('transform','scale(.75)')
 
 
