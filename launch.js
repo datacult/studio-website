@@ -177,7 +177,7 @@ let launch = ((selector = '#launch') => {
     ////////////////////////////////////  
 
     const link = svg.append("g")
-        .attr("stroke", "#999")
+        .attr("stroke", "#504E4E")
         .attr("stroke-opacity", 0.6)
         .selectAll("line")
         .data(links)
