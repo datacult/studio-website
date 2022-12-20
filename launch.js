@@ -240,9 +240,10 @@ let launch = ((selector = '#launch') => {
     function update(val){
         
 
-        console.log(stp)
+        // console.log(stp)
 
         if (stp == 1) {
+            confetti.clear();
 
             simulation
             .alpha(1)
@@ -267,7 +268,7 @@ let launch = ((selector = '#launch') => {
 
         } else {
 
-            console.log('confetti')
+            // console.log('confetti')
             confetti = new ConfettiGenerator(confettiSettings);
             confetti.render();
 
