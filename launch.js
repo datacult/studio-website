@@ -243,6 +243,7 @@ let launch = ((selector = '#launch') => {
         // console.log(stp)
 
         if (stp == 1) {
+            confetti = new ConfettiGenerator(confettiSettings);
             confetti.clear();
 
             simulation
@@ -255,6 +256,7 @@ let launch = ((selector = '#launch') => {
             .call(drag(simulation))
         } else if (stp == 2){
             
+            confetti = new ConfettiGenerator(confettiSettings);
             confetti.clear();
 
             simulation
