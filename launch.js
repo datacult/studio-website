@@ -35,7 +35,7 @@ let launch = ((selector = '#launch') => {
     // add SVG
     d3.select(`${selector} svg`).remove();
 
-    d3.select('#confetti-placeholder').append('canvas').attr('id','confetti-canvas');
+    d3.select('#confetti-placeholder').append('div').attr('id','confetti-canvas');
 
     const svg = d3.select(selector)
         .append('svg')
@@ -210,41 +210,16 @@ let launch = ((selector = '#launch') => {
             .attr("y", d => d.y)
     })
 
-    var confettiSettings = {
-        "target":"confetti-canvas",
-        "max":"400",
-        "size":"1.5",
-        "animate":true,
-        // "props":["square","line"],
-        "props": [
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-1.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-2.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-3.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-4.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-5.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-6.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-7.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-8.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-9.svg","size":15,"weight":0.2},
-            {"type":"svg","src":"https://datacult.github.io/studio-website/assets/confetti/confetti-10.svg","size":15,"weight":0.2},
-        ],
-        "colors":[[125,192,195],[214,77,102],[251,175,132],[148,123,182]],
-        "clock":"35",
-        "rotate":true,
-        "start_from_edge":false,
-        "respawn":true
-    };
-    var confetti = new ConfettiGenerator(confettiSettings);
 
     //scroll update function
     function update(val){
-        
-
-        // console.log(stp)
 
         if (stp == 1) {
-            confetti = new ConfettiGenerator(confettiSettings);
-            confetti.clear();
+            tsParticles.load("confetti-canvas", {"particles": {
+                "opacity": {
+                  "value": 0
+                }
+              }})
 
             simulation
             .alpha(1)
@@ -256,8 +231,11 @@ let launch = ((selector = '#launch') => {
             .call(drag(simulation))
         } else if (stp == 2){
             
-            confetti = new ConfettiGenerator(confettiSettings);
-            confetti.clear();
+            tsParticles.load("confetti-canvas", {"particles": {
+                "opacity": {
+                  "value": 0
+                }
+              }})
 
             simulation
             .alpha(1)
@@ -270,9 +248,210 @@ let launch = ((selector = '#launch') => {
 
         } else {
 
-            // console.log('confetti')
-            confetti = new ConfettiGenerator(confettiSettings);
-            confetti.render();
+            tsParticles.load("confetti-canvas", {
+                "fullScreen": {
+                  "zIndex": 1
+                },
+                "particles": {
+                  "color": {
+                    "value": [
+                      "#FFFFFF",
+                      "#FFd700"
+                    ]
+                  },
+                  "move": {
+                    "direction": "bottom",
+                    "enable": true,
+                    "outModes": {
+                      "default": "out"
+                    },
+                    "size": true,
+                    "speed": {
+                      "min": 1,
+                      "max": 3
+                    }
+                  },
+                  "number": {
+                    "value": 500,
+                    "density": {
+                      "enable": true,
+                      "area": 800
+                    }
+                  },
+                  "opacity": {
+                    "value": 1,
+                    "animation": {
+                      "enable": false,
+                      "startValue": "max",
+                      "destroy": "min",
+                      "speed": 0.3,
+                      "sync": true
+                    }
+                  },
+                  "rotate": {
+                    "value": {
+                      "min": 0,
+                      "max": 360
+                    },
+                    "direction": "random",
+                    "move": true,
+                    "animation": {
+                      "enable": true,
+                      "speed": 60
+                    }
+                  },
+                  "tilt": {
+                    "direction": "random",
+                    "enable": true,
+                    "move": true,
+                    "value": {
+                      "min": 0,
+                      "max": 360
+                    },
+                    "animation": {
+                      "enable": true,
+                      "speed": 60
+                    }
+                  },
+                  "shape": {
+                    "type": "image",
+                    "options": {
+                      "image": [
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-1.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-2.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-3.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-4.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-5.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-6.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-7.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-8.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-9.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        },
+                        {
+                          "src": "https://datacult.github.io/studio-website/assets/confetti/confetti-10.svg",
+                          "width": 32,
+                          "height": 32,
+                          "particles": {
+                            "size": {
+                              "value": 16
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "size": {
+                    "value": {
+                      "min": 2,
+                      "max": 4
+                    }
+                  },
+                  "roll": {
+                    "darken": {
+                      "enable": true,
+                      "value": 30
+                    },
+                    "enlighten": {
+                      "enable": true,
+                      "value": 30
+                    },
+                    "enable": true,
+                    "speed": {
+                      "min": 15,
+                      "max": 25
+                    }
+                  },
+                  "wobble": {
+                    "distance": 30,
+                    "enable": true,
+                    "move": true,
+                    "speed": {
+                      "min": -15,
+                      "max": 15
+                    }
+                  }
+                }
+              });
 
         }
 
