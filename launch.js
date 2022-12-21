@@ -453,6 +453,8 @@ let launch = ((selector = '#launch') => {
                 }
               });
 
+              d3.selectAll('canvas').style('left','-200vw !important')
+
         }
 
         
