@@ -54,6 +54,12 @@ let launch = ((selector = '#launch') => {
         rootMargin: "0px",
         threshold: [.75]
       };
+
+      let options2 = {
+        root: null,
+        rootMargin: "0px",
+        threshold: [.01]
+      };
         
         const contract = document.querySelector('#contract');
 
@@ -94,6 +100,20 @@ let launch = ((selector = '#launch') => {
         };
 
         confettiObserver.observe(confettiOb);
+
+        const end = document.querySelector('#end');
+
+        const endObserver = new IntersectionObserver(handleEnd, options2);
+    
+        function handleEnd(entry, observer) {
+            if (entry[0].intersectionRatio > .01) {
+                stp = 4
+                console.log('end')
+                update()
+            }
+        };
+
+        endObserver.observe(end);
 
     ////////////////////////////////////
     //////////////globals///////////////
@@ -246,11 +266,12 @@ let launch = ((selector = '#launch') => {
             .style("opacity",1)
             .call(drag(simulation))
 
-        } else {
+        } else if (stp == 3) {
 
             tsParticles.load("confetti-canvas", {
                 "fullScreen": {
-                  "zIndex": 1
+                  "zIndex": 10,
+                  "Left": "-300vw"
                 },
                 "particles": {
                   "color": {
@@ -453,8 +474,12 @@ let launch = ((selector = '#launch') => {
                 }
               });
 
-              d3.selectAll('canvas').style('left','-200vw !important')
-
+        } else {
+            tsParticles.load("confetti-canvas", {"particles": {
+                "opacity": {
+                  "value": 0
+                }
+              }}) 
         }
 
         
