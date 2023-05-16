@@ -225,6 +225,11 @@ svg.append('image')
 
     //scroll update function
     function update(val){
+        tsParticles.load("confetti-canvas", {"particles": {
+            "opacity": {
+              "value": 0
+            }
+          }}) 
 
         if (stp == 1) {
 
